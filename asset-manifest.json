@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/robostars/static/js/main.af5b6f0d.chunk.js",
+    "main.js.map": "/robostars/static/js/main.af5b6f0d.chunk.js.map",
+    "runtime-main.js": "/robostars/static/js/runtime-main.c997a64e.js",
+    "runtime-main.js.map": "/robostars/static/js/runtime-main.c997a64e.js.map",
+    "static/css/2.3c03f26f.chunk.css": "/robostars/static/css/2.3c03f26f.chunk.css",
+    "static/js/2.2d501e24.chunk.js": "/robostars/static/js/2.2d501e24.chunk.js",
+    "static/js/2.2d501e24.chunk.js.map": "/robostars/static/js/2.2d501e24.chunk.js.map",
+    "index.html": "/robostars/index.html",
+    "precache-manifest.920c4fc6a8d49ae62da248f284bc06c0.js": "/robostars/precache-manifest.920c4fc6a8d49ae62da248f284bc06c0.js",
+    "service-worker.js": "/robostars/service-worker.js",
+    "static/css/2.3c03f26f.chunk.css.map": "/robostars/static/css/2.3c03f26f.chunk.css.map",
+    "static/js/2.2d501e24.chunk.js.LICENSE.txt": "/robostars/static/js/2.2d501e24.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c997a64e.js",
+    "static/css/2.3c03f26f.chunk.css",
+    "static/js/2.2d501e24.chunk.js",
+    "static/js/main.af5b6f0d.chunk.js"
+  ]
+}
