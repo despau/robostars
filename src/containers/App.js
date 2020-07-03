@@ -5,51 +5,41 @@ import SearchBox from '../components/SearchBox.js';
 import Scroll from '../components/Scroll.js';
 import ErrorBoundry from '../components/ErrorBoundry.js'
 
-import { setSearchField } from '../actions.js';
+import { setSearchField, requestRobos } from '../actions.js';
 
 //
 const mapStateToProps = (state) => {
   return {
-    searchField: state.searchField
+    searchField: state.searchRobos.searchField,
+    robos: state.requestRobos.robos,
+    isPending: state.requestRobos.isPending,
+    error: state.requestRobos.error
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestRobos: () => dispatch(requestRobos())
   }
 }
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state={
-      robos: []
-    }
-  };
 
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users').then(response=> {
-      return response.json();
-    }).then(users => {
-      this.setState({ robos: users})
-    });
+    this.props.onRequestRobos();
   }
-
-  // onSearchChange = (event) => {
-  //   this.setState({ searchfield: event.target.value });
-  // }
 
   render() {
 
-    const { searchField, onSearchChange } = this.props;
+    const { searchField, onSearchChange, robos, isPending } = this.props;
 
-    const filteredRobos = this.state.robos.filter(robos => {
+    const filteredRobos = robos.filter(robo => {
       //return on this condition true
-      return robos.name.toLocaleLowerCase().includes(searchField.toLocaleLowerCase());
+      return robo.name.toLowerCase().includes(searchField.toLowerCase());
     });
 
-    if(this.state.robos.length === 0) {
+    if(isPending) {
       return <h1>Loading...</h1>
     }else {
       return (
