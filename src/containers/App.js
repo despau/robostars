@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CardList from '../components/CardList.js';
 import SearchBox from '../components/SearchBox.js';
 import Scroll from '../components/Scroll.js';
 import ErrorBoundry from '../components/ErrorBoundry.js'
 
+import { setSearchField } from '../actions.js';
+
+//
+const mapStateToProps = (state) => {
+  return {
+    searchField: state.searchField
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+  }
+}
+
 class App extends Component {
   constructor() {
     super()
     this.state={
-      robos: [],
-      searchfield: ''
+      robos: []
     }
   };
 
@@ -21,14 +36,17 @@ class App extends Component {
     });
   }
 
-  onSearchChange = (event) => {
-    this.setState({ searchfield: event.target.value });
-  }
+  // onSearchChange = (event) => {
+  //   this.setState({ searchfield: event.target.value });
+  // }
 
   render() {
+
+    const { searchField, onSearchChange } = this.props;
+
     const filteredRobos = this.state.robos.filter(robos => {
       //return on this condition true
-      return robos.name.toLocaleLowerCase().includes(this.state.searchfield.toLocaleLowerCase());
+      return robos.name.toLocaleLowerCase().includes(searchField.toLocaleLowerCase());
     });
 
     if(this.state.robos.length === 0) {
@@ -37,7 +55,7 @@ class App extends Component {
       return (
         <div className="tc tc bg-black">
           <h1 className='white'>This is the App</h1>
-            <SearchBox searchChange={this.onSearchChange} />
+            <SearchBox searchChange={onSearchChange} />
             <Scroll>
               <ErrorBoundry>
                 <CardList robos={filteredRobos}/>
@@ -49,4 +67,6 @@ class App extends Component {
   }
 }
 
-export default App;
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
