@@ -1,3 +1,5 @@
+import { apiCall } from './api/api'
+
 import { 
     CHANGE_SEARCH_FIELD,
     REQUEST_ROBOS_PENDING,
@@ -20,16 +22,43 @@ export const setSearchField = (text) => ({
 //requestRobos returns a function
 export const requestRobos = () => ( dispatch ) => {
     dispatch({ type: REQUEST_ROBOS_PENDING })
-    fetch('https://jsonplaceholder.typicode.com/users').then(response=> {
-      return response.json();
-    }).then( data => dispatch({
-      type: REQUEST_ROBOS_SUCCESS,
-      payload: data
-    })).catch( error => dispatch({
+    apiCall('https://jsonplaceholder.typicode.com/users')
+      .then( data => dispatch({
+          type: REQUEST_ROBOS_SUCCESS,
+          payload: data
+        }))
+      .catch( error => dispatch({
         type: REQUEST_ROBOS_FAILURE,
         payload: error
     }));
 };
+
+//------------------------------------------
+
+// export const requestRobots = (dispatch) => {
+//   dispatch({ type: REQUEST_ROBOTS_PENDING })
+//   apiCall('https://jsonplaceholder.typicode.com/users')
+//     .then(data => dispatch({ type: REQUEST_ROBOTS_SUCCESS, payload: data }))
+//     .catch(error => dispatch({ type: REQUEST_ROBOTS_FAILED, payload: error }))
+// }
+
+//-----------------------------------------------
+
+
+
+//----------------------------------------
+
+// fetch('https://jsonplaceholder.typicode.com/users').then(response=> {
+//   return response.json();
+// }).then( data => dispatch({
+//   type: REQUEST_ROBOS_SUCCESS,
+//   payload: data
+// })).catch( error => dispatch({
+//     type: REQUEST_ROBOS_FAILURE,
+//     payload: error
+// }));
+
+//-----------------------------------------
 
 // export const requestRobos = (  ) => ({
 
