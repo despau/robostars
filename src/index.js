@@ -6,7 +6,7 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import App from './containers/App';
 import 'tachyons';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker.js';
 import { searchRobos, requestRobos } from './reducers.js';
 
 
